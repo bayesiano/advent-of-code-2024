@@ -32,11 +32,8 @@ object Day8 {
         runProblemRaw("$day/problem_1.txt", "$day.Problem 2", solution = 949) {
             solveProblem2(it)
         }
-//        //426214137279934
     }
 
-    //    18446744073709551615
-    //     426214137279934
     private fun solveProblem1(input: String): Int {
         val lines = input.split('\n')
         val width = lines[0].length

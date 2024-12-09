@@ -20,7 +20,6 @@ object Day9 {
         runProblemRaw("$day/problem_1.txt", "$day.Problem 2", solution = 6460170593016) {
             solveProblem2(it)
         }
-//        //426214137279934
     }
 
     data class Block(var id: Int, var length: Int) {
