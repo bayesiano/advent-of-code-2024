@@ -20,32 +20,30 @@ object Day11 {
 
 
     private fun solveProblem1(input: String, numBlinks: Int): Long {
-        val stones = input.split( " ").map(String::toLong)
-
-        val res = stones.map{ blink( it, numBlinks) }
-
-        return res.sum()
+        val initialStones = input.split( " ").map(String::toLong)
+        return initialStones.sumOf { blink(it, numBlinks) }
     }
 
-    private val cache = mutableMapOf<String,Long>()
+    private val cache = mutableMapOf<Pair<Long,Int>,Long>()
 
-    private fun blink(stone: Long, numBlinks: Int): Long {
+    private fun blink( stone: Long, numBlinks: Int): Long {
         if( numBlinks == 0) return 1
 
-        val cacheKey = "$stone-$numBlinks"
+        val cacheKey = stone to numBlinks
         cache[cacheKey]?.let { return it }
 
-        val res =
-            if( stone == 0L) blink( 1, numBlinks - 1)
-            else if( stone.toString().length % 2 == 0) {
-                val strStone = stone.toString()
-                val stone1 = strStone.substring(0, strStone.length/2).toLong()
-                val stone2 = strStone.substring(strStone.length/2).toLong()
-                blink( stone1, numBlinks - 1) + blink(stone2, numBlinks - 1)
+        val totalStones = when {
+                stone == 0L -> blink(1, numBlinks - 1)
+                stone.toString().length % 2 == 0 -> {
+                    val strStone = stone.toString()
+                    val stone1 = strStone.substring(0, strStone.length / 2).toLong()
+                    val stone2 = strStone.substring(strStone.length / 2).toLong()
+                    blink(stone1, numBlinks - 1) + blink(stone2, numBlinks - 1)
+                }
+                else -> blink(stone * 2024, numBlinks - 1)
             }
-            else blink( stone * 2024, numBlinks - 1)
-        cache[cacheKey] = res
-        return res
+        cache[cacheKey] = totalStones
+        return totalStones
     }
 
 
