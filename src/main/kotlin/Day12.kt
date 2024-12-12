@@ -47,8 +47,8 @@ object Day12 {
     private fun solveProblem1(input: String): Long {
         val map = input.split("\n").map(String::toCharArray)
         val garden = calculatePlots(map)
-        println()
-        garden.regions.forEach { println("${it.plot}: ${it.perimeter()} x ${it.area()}") }
+//        println()
+//        garden.regions.forEach { println("${it.plot}: ${it.perimeter()} x ${it.area()}") }
         val sum = garden.regions.sumOf { it.perimeter() * it.area() }
         return sum
     }
@@ -56,8 +56,8 @@ object Day12 {
     private fun solveProblem2(input: String): Long {
         val map = input.split("\n").map(String::toCharArray)
         val garden = calculatePlots(map)
-        println()
-        garden.regions.forEach { println("${it.plot}: ${it.sides()} x ${it.area()}") }
+//        println()
+//        garden.regions.forEach { println("${it.plot}: ${it.sides()} x ${it.area()}") }
         val sum = garden.regions.sumOf { it.sides() * it.area() }
         return sum
     }
@@ -134,11 +134,11 @@ object Day12 {
                         }
                         else j += 1
                     }
-                    sides = sides.filter { it.p0 != it.p1 }.toMutableList()
+//                    sides = sides.filter { it.p0 != it.p1 }.toMutableList()
                     i += 1
                 }
             }
-            return sides.size.toLong()
+            return sides.filterNot { it.p0 == it.p1 }.size.toLong()
         }
     }
 
