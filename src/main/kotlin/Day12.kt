@@ -67,7 +67,6 @@ object Day12 {
         return sum
     }
 
-
     data class Point(val i: Int, val j: Int) {
         fun distance(other: Point): Int = abs(other.i - i) + abs(other.j - j)
     }
