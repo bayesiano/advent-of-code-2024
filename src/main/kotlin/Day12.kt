@@ -101,17 +101,6 @@ object Day12 {
         fun sides(): Long {
             val sides = buildList {
                 locations.map { currentLocation ->
-//                val neighbours = locations.filter { it.distance(currentLocation) == 1 }
-//                val res = when (neighbours.size) {
-//                    0 -> 4L
-//                    1 -> 2L
-//                    2 -> {
-//                        if( neighbours[0].inSameLine( neighbours[1])) 0L
-//                        else 1L
-//                    }
-//                    else -> 0L
-//                }
-//                res
                     add(Line(currentLocation, Point(currentLocation.i + 1, currentLocation.j)))
                     add(
                         Line(
@@ -170,7 +159,6 @@ object Day12 {
                     }
                 }
             }
-
         }
     }
 
